@@ -117,28 +117,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. HİZMET BÖLGELERİ (SEO LİNK HARİTASI) */}
+      {/* 5. HİZMET BÖLGELERİ (KISA VERSİYON) */}
       <section className="py-24 w-full border-t border-white/5 bg-white/[0.01]">
-        <div className="container mx-auto px-6">
-          <div className="mb-12">
-            <h2 className="text-2xl font-black uppercase italic tracking-tighter">Türkiye Geneli <span className="text-blue-500">Hizmet Ağı</span></h2>
-            <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mt-2">Google'da 1. Sıra İçerik Haritası.</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-            {regions.map((region) => (
-              <div key={region.city} className="space-y-3">
-                <h3 className="text-blue-500 font-black text-[10px] uppercase tracking-tighter border-b border-blue-500/20 pb-2">{region.city}</h3>
-                <ul className="flex flex-col gap-1">
-                  {region.districts.map((ilce) => (
-                    <li key={ilce}>
-                      <a href={`/${region.city}/${ilce}`} className="text-gray-600 hover:text-white text-[9px] font-black uppercase tracking-tighter transition-colors">
-                        {ilce} Tasarım
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+        <div className="container mx-auto px-6 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-6">
+              Türkiye Geneli <span className="text-blue-500">Hizmet Ağı</span>
+            </h2>
+            <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium">
+              Sadece Başakşehir değil; İstanbul'un tüm ilçeleri ve Türkiye'nin 81 ilinde profesyonel web tasarım hizmeti sunuyoruz. Bölgenize özel çözümlerimiz için hizmet haritamıza göz atın.
+            </p>
+            
+            <a 
+              href="/hizmet-bolgeleri" 
+              className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-10 py-5 rounded-2xl font-black transition-all border border-white/10 hover:border-white/30 uppercase tracking-widest group"
+            >
+              TÜM HİZMET BÖLGELERİNİ GÖR
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
           </div>
         </div>
       </section>
