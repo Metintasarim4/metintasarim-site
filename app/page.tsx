@@ -1,8 +1,37 @@
+"use client"; // Bu satır en üstte olmak zorunda (Form çalışması için)
+import { useState } from 'react';
 import { regions } from '../data/regions';
 
 export default function Home() {
+  // --- FORM VERİLERİNİ TUTAN KISIM ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  // --- WHATSAPP GÖNDERME FONKSİYONU ---
+  const sendToWhatsapp = (e: any) => {
+    e.preventDefault(); // Sayfanın yenilenmesini engeller
+    
+    // Basit doğrulama
+    if (!formData.name) {
+      alert("Lütfen adınızı giriniz.");
+      return;
+    }
+
+    // Mesajı oluşturuyoruz
+    const text = `Merhaba Metin Tasarım, sitenizden yazıyorum.%0A%0A👤 *İsim:* ${formData.name}%0A📧 *E-posta:* ${formData.email}%0A📝 *Mesaj:* ${formData.message}`;
+    
+    // Senin numaran: 0543 210 70 58
+    window.open(`https://wa.me/905432107058?text=${text}`, '_blank');
+    
+    // Gönderdikten sonra formu temizleyelim (İsteğe bağlı)
+    setFormData({ name: '', email: '', message: '' });
+  };
+
   return (
-    <main className="min-h-screen bg-[#030303] text-white flex flex-col items-center overflow-x-hidden">
+    <main className="min-h-screen bg-[#030303] text-white flex flex-col items-center overflow-x-hidden font-sans">
       
       {/* 1. HERO SECTION: Ana SEO Başlığı */}
       <section className="pt-48 pb-20 text-center px-6 max-w-6xl">
@@ -114,7 +143,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. İLETİŞİM BÖLÜMÜ */}
+      {/* 6. İLETİŞİM BÖLÜMÜ (GÜNCELLENDİ: WHATSAPP FORMU) */}
       <section id="iletisim" className="py-24 container mx-auto px-6 w-full">
         <div className="bg-white/5 border border-white/10 rounded-[4rem] p-10 md:p-20 backdrop-blur-3xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 blur-[120px] -z-10"></div>
@@ -139,12 +168,39 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <form className="flex flex-col gap-4">
-              <input type="text" placeholder="ADINIZ SOYADINIZ" className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest" />
-              <input type="email" placeholder="E-POSTA ADRESİNİZ" className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest" />
-              <textarea placeholder="PROJENİZDEN BAHSEDİN" rows={5} className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest resize-none"></textarea>
-              <button className="w-full bg-white text-black py-6 rounded-3xl font-black uppercase tracking-[0.4em] hover:bg-blue-600 hover:text-white transition-all shadow-2xl">TEKLİF İSTE</button>
+
+            {/* --- AKTİF WHATSAPP FORMU BURADA --- */}
+            <form onSubmit={sendToWhatsapp} className="flex flex-col gap-4">
+              <input 
+                type="text" 
+                placeholder="ADINIZ SOYADINIZ" 
+                className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white" 
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                required
+              />
+              <input 
+                type="email" 
+                placeholder="E-POSTA ADRESİNİZ" 
+                className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white" 
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+              />
+              <textarea 
+                placeholder="PROJENİZDEN BAHSEDİN" 
+                rows={5} 
+                className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest resize-none text-white"
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
+              ></textarea>
+              <button 
+                type="submit" 
+                className="w-full bg-white text-black py-6 rounded-3xl font-black uppercase tracking-[0.4em] hover:bg-blue-600 hover:text-white transition-all shadow-2xl active:scale-95"
+              >
+                TEKLİF İSTE 🚀
+              </button>
             </form>
+            {/* --- FORM BİTİŞ --- */}
           </div>
         </div>
       </section>
