@@ -1,47 +1,30 @@
+import { posts } from '../../data/posts';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog - Web Tasarım ve SEO İpuçları",
+  description: "Web tasarım trendleri ve SEO taktikleri.",
+};
+
 export default function BlogPage() {
-  const posts = [
-    {
-      id: 1,
-      title: "Başakşehir'de İşletmenizi Google'da Nasıl Öne Çıkarırsınız?",
-      excerpt: "Lokal SEO stratejileri ile İstanbul Başakşehir'deki rakiplerinizin önüne geçmenin yolları.",
-      date: "25 Ocak 2026",
-      category: "SEO"
-    },
-    {
-      id: 2,
-      title: "Neden Next.js 15+ Kullanmalısınız?",
-      excerpt: "Modern web tasarımında hızın önemi ve Next.js'in sunduğu teknik avantajlar.",
-      date: "20 Ocak 2026",
-      category: "YAZILIM"
-    }
-  ];
-
   return (
-    <main className="min-h-screen bg-[#030303] text-white pt-48 pb-24 px-6">
-      <div className="container mx-auto max-w-6xl">
-        <div className="mb-16">
-          <p className="text-blue-500 font-black tracking-[0.5em] uppercase text-xs mb-4">Metin Tasarım Blog</p>
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase italic leading-none">
-            DİJİTAL <span className="text-gray-600">BİLGİ</span> <br /> KÜTÜPHANESİ
-          </h1>
-        </div>
+    <main className="min-h-screen bg-[#030303] text-white pt-32 pb-20 px-6">
+      <div className="container mx-auto max-w-4xl">
+        <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-16 text-center">
+          GÜNCEL <span className="text-blue-600">BLOG</span>
+        </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid gap-10">
           {posts.map((post) => (
-            <div key={post.id} className="group cursor-pointer border-b border-white/5 pb-12">
-              <div className="flex justify-between items-center mb-6">
-                <span className="bg-blue-600 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">{post.category}</span>
-                <span className="text-gray-600 text-[10px] font-bold uppercase">{post.date}</span>
-              </div>
-              <h2 className="text-3xl font-black uppercase italic tracking-tighter group-hover:text-blue-500 transition-colors mb-4 leading-tight">
+            <div key={post.id} className="bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-blue-500/50 transition-all group">
+              <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">{post.date}</div>
+              <h2 className="text-2xl font-black italic uppercase mb-4 text-white group-hover:text-blue-400 transition-colors">
                 {post.title}
               </h2>
-              <p className="text-gray-500 uppercase font-bold text-xs tracking-tighter leading-relaxed mb-8">
-                {post.excerpt}
-              </p>
-              <button className="text-[10px] font-black uppercase tracking-widest border border-white/10 px-6 py-3 rounded-xl group-hover:bg-white group-hover:text-black transition-all">
-                Devamını Oku
-              </button>
+              <p className="text-gray-400 leading-relaxed mb-6">{post.excerpt}</p>
+              <a href={`/blog/${post.slug}`} className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-blue-700 transition-all">
+                Devamını Oku →
+              </a>
             </div>
           ))}
         </div>
