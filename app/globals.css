@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030303;
+  --foreground: #ffffff;
+}
+
+body {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  margin: 0;
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+}
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 3s infinite ease-in-out;
+}
