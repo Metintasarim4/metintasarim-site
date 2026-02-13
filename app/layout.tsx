@@ -3,22 +3,38 @@ import "./globals.css";
 import ChatPanel from "../components/ChatPanel"; 
 
 export const metadata: Metadata = {
-  // TIKLANABİLİR BAŞLIK (Google'daki Mavi Yazı)
+  // BAŞLIK (Title)
   title: {
-    default: "Metin Tasarım - Başakşehir Profesyonel Web Tasarım & SEO Ajansı",
+    default: "Metin Tasarım - İstanbul Web Tasarım Uzmanı & Grafik Ajansı",
     template: "%s | Metin Tasarım"
   },
   
-  // VİTRİN AÇIKLAMASI (Google'daki Gri Yazı)
-  description: "İşletmenizi Google'da zirveye taşıyın! Başakşehir merkezli ajansımızda %100 SEO uyumlu, hızlı ve mobil dostu web siteleri tasarlıyoruz. Hemen teklif alın, satışlarınızı artırın.",
+  // AÇIKLAMA (Description - İstediğin kelimeler cümle içinde geçirildi)
+  description: "İstanbul web tasarım uzmanı Metin Tasarım ile tanışın! Profesyonel web tasarım, grafik tasarım ve kurumsal kimlik hizmetleri sunuyoruz. Başakşehir merkezli ajansımızla markanızı dijitalde zirveye taşıyın.",
   
-  // ARAMA KELİMELERİ (Google çok bakmaz ama diğerleri bakar)
-  keywords: ["Başakşehir Web Tasarım", "İstanbul SEO ve WEB Sitesi Uzmanı", "Kurumsal Web Sitesi", "E-Ticaret Sitesi", "Metin Tasarım", "Next.js Yazılım", "Grafik Tasarım","Web Tasarım"],
+  // ANAHTAR KELİMELER (Keywords - Buraya bol bol yazabilirsin)
+  keywords: [
+    "İstanbul Web Tasarım Uzmanı", 
+    "Web Tasarım", 
+    "Grafik Tasarım", 
+    "Kurumsal Kimlik", 
+    "Logo Tasarımı", 
+    "Başakşehir Web Tasarım", 
+    "SEO Uyumlu Web Sitesi", 
+    "Metin Tasarım",
+    "Metin Web Tasarım"
+  ],
   
-  // SOSYAL MEDYA GÖRÜNÜMÜ (WhatsApp/Twitter/Facebook paylaşınca çıkanlar)
+  // İKONLAR (Az önce yaptığımız ayar kalsın)
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  },
+
+  // SOSYAL MEDYA PAYLAŞIM GÖRÜNÜMÜ
   openGraph: {
-    title: "Metin Tasarım - İşinizi Dijitale Taşıyoruz 🚀",
-    description: "Profesyonel web tasarım ve SEO hizmetleri ile rakiplerinizin önüne geçin. Başakşehir ofisimize bekleriz.",
+    title: "Metin Tasarım - Web & Grafik Tasarım Hizmetleri",
+    description: "Kurumsal kimlik, logo ve profesyonel web tasarım çözümleri. İşinizi profesyonellere emanet edin.",
     url: "https://www.metintasarim.com",
     siteName: "Metin Tasarım",
     locale: "tr_TR",
