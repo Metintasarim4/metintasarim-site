@@ -67,6 +67,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* CHAT ROBOTU */}
         <ChatPanel />
+        {/* --- SCHEMA.ORG (GOOGLE ZENGİN SONUÇLAR / KİMLİK KARTI) --- */}
+        <Script id="schema-org" type="application/ld+json" strategy="afterInteractive">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Metin Tasarım",
+              "image": "https://www.metintasarim.com/icon.png",
+              "@id": "https://www.metintasarim.com",
+              "url": "https://www.metintasarim.com",
+              "telephone": "+905432107058",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Başakşehir",
+                "addressLocality": "İstanbul",
+                "addressCountry": "TR"
+              },
+              "description": "İstanbul merkezli profesyonel web tasarım, e-ticaret ve SEO ajansı.",
+              "priceRange": "₺₺"
+            }
+          `}
+        </Script>
+        {/* -------------------------------------------------------- */}
 
         {/* --- GOOGLE ANALYTICS KODU BAŞLANGIÇ --- */}
         <Script
