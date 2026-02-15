@@ -5,7 +5,7 @@ import { regions } from '../data/regions';
 // --- SLIDER İLÇELERİ ---
 const districts = ["BAŞAKŞEHİR", "BEŞİKTAŞ", "KADIKÖY", "ŞİŞLİ", "BAKIRKÖY", "BEYLİKDÜZÜ", "ATAŞEHİR"];
 
-// --- 🌟 SENİN GERÇEK PROJELERİN (GÜNCELLENDİ) 🌟 ---
+// --- 🌟 PROJELER LİSTESİ (YENİ YATIRIM SİTELERİ EKLENDİ) 🌟 ---
 const portfolioProjects = [
   {
     id: 1,
@@ -37,14 +37,14 @@ const portfolioProjects = [
   },
   {
     id: 5,
-    title: "Risk Analiz",
+    title: "RİSK ANALİZ",
     category: "Yatırım Adına Yapılan Projemiz",
     link: "https://riskanaliz.com.tr/",
     image: "/proje5.jpg"
   },
   {
     id: 6,
-    title: "Corel investment",
+    title: "COREL INVESTMENT",
     category: "Yatırım Adına Yapılan Projemiz 2",
     link: "https://corelinvestment.com/",
     image: "/proje6.jpg"
@@ -54,7 +54,15 @@ const portfolioProjects = [
 export default function Home() {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  
+  // Akıllı Form Verileri
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    service: '', 
+    budget: '', 
+    message: '' 
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,10 +75,14 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // WhatsApp Mesaj Şablonu
   const sendToWhatsapp = (e: any) => {
     e.preventDefault();
-    if (!formData.name) { alert("Lütfen adınızı giriniz."); return; }
-    const text = `Merhaba Metin Tasarım, sitenizden yazıyorum.%0A%0A👤 *İsim:* ${formData.name}%0A📧 *E-posta:* ${formData.email}%0A📝 *Mesaj:* ${formData.message}`;
+    if (!formData.name || !formData.service || !formData.budget) { 
+        alert("Lütfen adınızı, istediğiniz hizmeti ve bütçenizi seçiniz."); 
+        return; 
+    }
+    const text = `🚀 *Web Sitenizden Yeni Teklif Talebi Var!*%0A%0A👤 *Müşteri:* ${formData.name}%0A📧 *E-posta:* ${formData.email || 'Belirtilmedi'}%0A💼 *İstenen Hizmet:* ${formData.service}%0A💰 *Bütçe Aralığı:* ${formData.budget}%0A📝 *Proje Detayı:* ${formData.message || 'Belirtilmedi'}`;
     window.open(`https://wa.me/905432107058?text=${text}`, '_blank');
   };
 
@@ -136,7 +148,7 @@ export default function Home() {
         ))}
       </section>
 
-      {/* 4. PROJELER (GERÇEK LİNKLER EKLENDİ) */}
+      {/* 4. PROJELER (Yeni Eklenenlerle Beraber 6 Proje) */}
       <section id="projeler" className="py-24 container mx-auto px-6 w-full">
         <div className="mb-12 text-center md:text-left">
           <p className="text-blue-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-2">Başarı Hikayeleri</p>
@@ -152,17 +164,13 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group relative overflow-hidden rounded-[3rem] bg-gray-900 border border-white/10 aspect-video flex flex-col items-center justify-end transition-all hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-900/20 block"
             >
-              {/* Proje Resmi (Arka Plan) */}
               <img 
                 src={project.image} 
                 alt={project.title} 
                 className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" 
                 onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"; }}
               />
-              
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-              {/* Proje Yazıları */}
               <div className="relative z-10 p-8 w-full text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <h3 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter text-white drop-shadow-lg">
                   {project.title}
@@ -170,7 +178,6 @@ export default function Home() {
                 <p className="text-blue-400 font-bold text-xs tracking-widest mt-2 uppercase bg-black/50 inline-block px-4 py-1 rounded-full backdrop-blur-md">
                   {project.category}
                 </p>
-                
                 <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                   <span className="text-white text-xs font-bold uppercase tracking-widest border-b border-white pb-1">Siteyi İncele →</span>
                 </div>
@@ -197,14 +204,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. İLETİŞİM */}
+      {/* 6. İLETİŞİM (AKILLI FORM) */}
       <section id="iletisim" className="py-24 container mx-auto px-6 w-full">
         <div className="bg-white/5 border border-white/10 rounded-[4rem] p-8 md:p-20 backdrop-blur-3xl relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 blur-[120px] -z-10"></div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
             <div>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase italic mb-8 leading-none">Başakşehir <br /> <span className="text-blue-500">Ofisimiz</span></h2>
-              <p className="text-gray-400 text-lg mb-12 uppercase font-bold tracking-tighter leading-relaxed">Projeleriniz için 7/24 yanınızdayız.</p>
+              <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase italic mb-8 leading-none">Projeye <br /> <span className="text-blue-500">Başlayalım</span></h2>
+              <p className="text-gray-400 text-lg mb-12 uppercase font-bold tracking-tighter leading-relaxed">Fikrinizi hayata geçirmek için doğru yerdesiniz. Hemen formu doldurun, size özel teklifimizi hazırlayalım.</p>
               <div className="space-y-8">
                 <div className="flex items-center gap-6 group">
                   <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-blue-600 transition-all">📍</div>
@@ -223,11 +230,39 @@ export default function Home() {
               </div>
             </div>
 
-            <form onSubmit={sendToWhatsapp} className="flex flex-col gap-4">
-              <input type="text" placeholder="ADINIZ SOYADINIZ" required className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
-              <input type="email" placeholder="E-POSTA ADRESİNİZ" className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
-              <textarea placeholder="PROJENİZDEN BAHSEDİN" rows={5} className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest resize-none text-white" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
-              <button type="submit" className="w-full bg-white text-black py-6 rounded-3xl font-black uppercase tracking-[0.4em] hover:bg-blue-600 hover:text-white transition-all shadow-2xl active:scale-95">TEKLİF İSTE 🚀</button>
+            <form onSubmit={sendToWhatsapp} className="flex flex-col gap-5">
+              <input type="text" placeholder="ADINIZ SOYADINIZ (Zorunlu)" required className="w-full bg-black/40 border border-white/10 p-5 rounded-2xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white placeholder:text-gray-600" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
+              
+              <input type="email" placeholder="E-POSTA ADRESİNİZ" className="w-full bg-black/40 border border-white/10 p-5 rounded-2xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white placeholder:text-gray-600" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+              
+              <div className="relative">
+                <select required className="w-full bg-black/40 border border-white/10 p-5 rounded-2xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white appearance-none cursor-pointer" value={formData.service} onChange={(e) => setFormData({...formData, service: e.target.value})}>
+                  <option value="" disabled className="bg-gray-900">İHTİYACINIZ OLAN HİZMET?</option>
+                  <option value="Kurumsal Web Sitesi" className="bg-gray-900">Kurumsal Web Sitesi</option>
+                  <option value="E-Ticaret Sitesi" className="bg-gray-900">E-Ticaret Sitesi</option>
+                  <option value="SEO ve Dijital Pazarlama" className="bg-gray-900">SEO ve Dijital Pazarlama</option>
+                  <option value="Logo ve Kurumsal Kimlik" className="bg-gray-900">Logo ve Kurumsal Kimlik</option>
+                  <option value="Özel Yazılım" className="bg-gray-900">Özel Yazılım</option>
+                </select>
+                <div className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">▼</div>
+              </div>
+
+              <div className="relative">
+                <select required className="w-full bg-black/40 border border-white/10 p-5 rounded-2xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white appearance-none cursor-pointer" value={formData.budget} onChange={(e) => setFormData({...formData, budget: e.target.value})}>
+                  <option value="" disabled className="bg-gray-900">PLANLADIĞINIZ BÜTÇE?</option>
+                  <option value="15.000₺ - 25.000₺" className="bg-gray-900">15.000₺ - 25.000₺ (Başlangıç)</option>
+                  <option value="25.000₺ - 50.000₺" className="bg-gray-900">25.000₺ - 50.000₺ (Profesyonel)</option>
+                  <option value="50.000₺ - 100.000₺" className="bg-gray-900">50.000₺ - 100.000₺ (Premium)</option>
+                  <option value="100.000₺ Üzeri" className="bg-gray-900">100.000₺ Üzeri (Kurumsal Çözümler)</option>
+                </select>
+                <div className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">▼</div>
+              </div>
+
+              <textarea placeholder="PROJENİZDEN KISACA BAHSEDİN" rows={4} className="w-full bg-black/40 border border-white/10 p-5 rounded-2xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest resize-none text-white placeholder:text-gray-600" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
+              
+              <button type="submit" className="w-full bg-blue-600 text-white py-6 mt-2 rounded-2xl font-black uppercase tracking-[0.3em] hover:bg-blue-700 hover:scale-[1.02] transition-all shadow-xl shadow-blue-600/20 active:scale-95">
+                HEMEN TEKLİF AL 🚀
+              </button>
             </form>
           </div>
         </div>
