@@ -2,45 +2,71 @@
 import { useState, useEffect } from 'react';
 import { regions } from '../data/regions';
 
-// BURASI SLIDER LİSTESİ (İstediğin ilçeleri buraya ekle/çıkar)
-const districts = [
-  "BAŞAKŞEHİR",
-  "BAĞCILAR",
-  "BEŞİKTAŞ",
-  "BEYOĞLU",
-  "FATİH",
-  "KADIKÖY",
-  "ŞİŞLİ",
-  "BAKIRKÖY",
-  "BEYLİKDÜZÜ",
-  "ATAŞEHİR",
-  "SARIYER",
-  "NİŞANTAŞI",
-  "ÜSKÜDAR",
-  "ÜMRANİYE"
+// --- SLIDER İLÇELERİ ---
+const districts = ["BAŞAKŞEHİR", "BEŞİKTAŞ", "KADIKÖY", "ŞİŞLİ", "BAKIRKÖY", "BEYLİKDÜZÜ", "ATAŞEHİR"];
+
+// --- 🌟 SENİN GERÇEK PROJELERİN (GÜNCELLENDİ) 🌟 ---
+const portfolioProjects = [
+  {
+    id: 1,
+    title: "AYDINLATMA SİTESİ",
+    category: "Aydınlatma Sitesi Örneği",
+    link: "https://green-louse-148271.hostingersite.com/",
+    image: "/proje1.jpg"
+  },
+  {
+    id: 2,
+    title: "PARTİ & KIRTASİYE",
+    category: "Parti Malzemesi ve Kırtasiye Örneği",
+    link: "https://pink-ibis-263812.hostingersite.com/",
+    image: "/proje2.jpg"
+  },
+  {
+    id: 3,
+    title: "E-TİCARET STORE",
+    category: "Store Mağaza İçin E-Ticaret Sitesi Örneği",
+    link: "https://yellowgreen-koala-694379.hostingersite.com/",
+    image: "/proje3.jpg"
+  },
+  {
+    id: 4,
+    title: "KOREL EMLAK",
+    category: "Emlak Sitesi Örneği",
+    link: "https://metin.metintasarim.io/",
+    image: "/proje4.jpg"
+  },
+  {
+    id: 5,
+    title: "Risk Analiz",
+    category: "Yatırım Adına Yapılan Projemiz",
+    link: "https://riskanaliz.com.tr/",
+    image: "/proje5.jpg"
+  },
+  {
+    id: 6,
+    title: "Corel investment",
+    category: "Yatırım Adına Yapılan Projemiz 2",
+    link: "https://corelinvestment.com/",
+    image: "/proje6.jpg"
+  }
 ];
 
 export default function Home() {
-  // --- SLIDER AYARLARI ---
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); // Önce yazıyı söndür
+      setFade(false); 
       setTimeout(() => {
-        setIndex((prevIndex) => (prevIndex + 1) % districts.length); // Yazıyı değiştir
-        setFade(true); // Tekrar yak
-      }, 500); // 0.5 saniye bekle (Animasyon süresi)
-    }, 3500); // Her 3.5 saniyede bir değiştir
-
+        setIndex((prevIndex) => (prevIndex + 1) % districts.length);
+        setFade(true); 
+      }, 500); 
+    }, 3500); 
     return () => clearInterval(interval);
   }, []);
 
-  // --- FORM VERİLERİ ---
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-
-  // --- WHATSAPP GÖNDERME ---
   const sendToWhatsapp = (e: any) => {
     e.preventDefault();
     if (!formData.name) { alert("Lütfen adınızı giriniz."); return; }
@@ -51,29 +77,22 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#030303] text-white flex flex-col items-center overflow-x-hidden font-sans">
       
-      {/* 1. HERO SECTION (HAREKETLİ BAŞLIK BURADA) */}
+      {/* 1. HERO SECTION */}
       <section className="pt-48 pb-20 text-center px-6 max-w-6xl min-h-[80vh] flex flex-col justify-center">
         <h1 className="text-6xl md:text-9xl font-black mb-8 tracking-tighter leading-none italic uppercase">
-          {/* Değişen İlçe İsmi */}
           <span className={`block transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
             {districts[index]}
           </span>
           <span className="text-blue-600 block mt-2">WEB TASARIM</span>
         </h1>
-        
         <p className="text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed uppercase font-bold tracking-tighter">
           Metin Tasarım ile İstanbul merkezli, yüksek performanslı ve SEO odaklı dijital çözümler. Google'da zirveye çıkmanız için buradayız.
         </p>
-        
         <div className="flex flex-wrap justify-center gap-4">
           <a href="#iletisim" className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-2xl font-black transition-all shadow-2xl shadow-blue-600/30 uppercase tracking-widest hover:scale-105">
             Hemen Başla
           </a>
-          <a 
-            href="https://wa.me/905432107058?text=Merhaba, web tasarım hizmeti almak istiyorum."
-            target="_blank"
-            className="bg-green-600 hover:bg-green-500 text-white px-12 py-5 rounded-2xl font-black transition-all shadow-2xl shadow-green-600/20 uppercase tracking-widest flex items-center gap-2 hover:scale-105"
-          >
+          <a href="https://wa.me/905432107058" target="_blank" className="bg-green-600 hover:bg-green-500 text-white px-12 py-5 rounded-2xl font-black transition-all shadow-2xl shadow-green-600/20 uppercase tracking-widest flex items-center gap-2 hover:scale-105">
             WhatsApp
           </a>
         </div>
@@ -90,7 +109,7 @@ export default function Home() {
               { t: "Hız", d: "Next.js ile Google hız testlerinde 100/100 tam puan.", i: "⚡" },
               { t: "SEO", d: "Başakşehir aramalarında organik görünürlük garantisi.", i: "🎯" },
               { t: "Destek", d: "0543 210 70 58 ile 7/24 doğrudan teknik destek.", i: "🛠️" },
-              { t: "Güven", d: "MTN Solar ve Metin Aydınlatma gibi güçlü referanslar.", i: "💎" }
+              { t: "Güven", d: "Premium ajans kalitesinde kurumsal çözümler.", i: "💎" }
             ].map((item, i) => (
               <div key={i} className="text-center group p-6 hover:bg-white/5 rounded-3xl transition-all border border-transparent hover:border-white/10">
                 <div className="text-4xl mb-4 group-hover:scale-125 transition-transform">{item.i}</div>
@@ -105,9 +124,9 @@ export default function Home() {
       {/* 3. HİZMETLER */}
       <section id="hizmetler" className="py-24 container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
         {[
-          { title: "SEO Uyumlu Yazılım", desc: "Next.js kullanarak dünyanın en hızlı açılan, Google botlarının sevdiği siteleri kodluyoruz.", icon: "🚀" },
-          { title: "Kurumsal Web Tasarım", desc: "Arama motoru optimizasyonu ile İstanbul aramalarında rakiplerinizin önüne geçin.", icon: "📈" },
-          { title: "Premium Tasarım", desc: "Kullanıcı deneyimi odaklı, modern ve güven veren kurumsal arayüz tasarımları.", icon: "🎨" }
+          { title: "SEO Uyumlu Yazılım", desc: "Google botlarının sevdiği siteleri kodluyoruz.", icon: "🚀" },
+          { title: "Kurumsal Web Tasarım", desc: "İstanbul aramalarında rakiplerinizin önüne geçin.", icon: "📈" },
+          { title: "Premium Tasarım", desc: "Güven veren kurumsal arayüz tasarımları.", icon: "🎨" }
         ].map((item, i) => (
           <div key={i} className="p-12 bg-white/5 border border-white/10 rounded-[3rem] backdrop-blur-xl hover:border-blue-500/5 transition-all group hover:bg-white/[0.07]">
             <div className="text-5xl mb-8 group-hover:scale-110 transition-transform">{item.icon}</div>
@@ -117,31 +136,51 @@ export default function Home() {
         ))}
       </section>
 
-      {/* 4. PORTFOLYO */}
+      {/* 4. PROJELER (GERÇEK LİNKLER EKLENDİ) */}
       <section id="projeler" className="py-24 container mx-auto px-6 w-full">
-        <div className="mb-12">
+        <div className="mb-12 text-center md:text-left">
           <p className="text-blue-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-2">Başarı Hikayeleri</p>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase italic">Seçkin <span className="text-gray-600">Projeler</span></h2>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase italic">Neler <span className="text-gray-600">Yaptık?</span></h2>
         </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="group relative overflow-hidden rounded-[3.5rem] bg-white/5 border border-white/10 aspect-video flex items-center justify-center transition-all hover:border-blue-500/50 cursor-pointer">
-            <div className="text-center z-10 transition-all group-hover:scale-110">
-              <h3 className="text-4xl font-black italic uppercase tracking-tighter">MTN SOLAR</h3>
-              <p className="text-blue-500 font-bold text-[10px] tracking-widest mt-2 uppercase">Enerji & Kurumsal</p>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-          </div>
-          <div className="group relative overflow-hidden rounded-[3.5rem] bg-white/5 border border-white/10 aspect-video flex items-center justify-center transition-all hover:border-blue-500/50 cursor-pointer">
-            <div className="text-center z-10 transition-all group-hover:scale-110">
-              <h3 className="text-4xl font-black italic uppercase tracking-tighter">METİN AYDINLATMA</h3>
-              <p className="text-blue-500 font-bold text-[10px] tracking-widest mt-2 uppercase">E-Ticaret Çözümleri</p>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-          </div>
+          {portfolioProjects.map((project) => (
+            <a 
+              key={project.id} 
+              href={project.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative overflow-hidden rounded-[3rem] bg-gray-900 border border-white/10 aspect-video flex flex-col items-center justify-end transition-all hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-900/20 block"
+            >
+              {/* Proje Resmi (Arka Plan) */}
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" 
+                onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"; }}
+              />
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+              {/* Proje Yazıları */}
+              <div className="relative z-10 p-8 w-full text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <h3 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter text-white drop-shadow-lg">
+                  {project.title}
+                </h3>
+                <p className="text-blue-400 font-bold text-xs tracking-widest mt-2 uppercase bg-black/50 inline-block px-4 py-1 rounded-full backdrop-blur-md">
+                  {project.category}
+                </p>
+                
+                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                  <span className="text-white text-xs font-bold uppercase tracking-widest border-b border-white pb-1">Siteyi İncele →</span>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
       </section>
 
-      {/* 5. HİZMET BÖLGELERİ (ÖZET) */}
+      {/* 5. HİZMET BÖLGELERİ */}
       <section className="py-24 w-full border-t border-white/5 bg-white/[0.01]">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto">
@@ -151,12 +190,8 @@ export default function Home() {
             <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium">
               Sadece Başakşehir değil; İstanbul'un tüm ilçeleri ve Türkiye'nin 81 ilinde profesyonel web tasarım hizmeti sunuyoruz.
             </p>
-            <a 
-              href="/hizmet-bolgeleri" 
-              className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-10 py-5 rounded-2xl font-black transition-all border border-white/10 hover:border-white/30 uppercase tracking-widest group"
-            >
-              TÜM HİZMET BÖLGELERİNİ GÖR
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            <a href="/hizmet-bolgeleri" className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-10 py-5 rounded-2xl font-black transition-all border border-white/10 hover:border-white/30 uppercase tracking-widest group">
+              TÜM HİZMET BÖLGELERİNİ GÖR <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
           </div>
         </div>
@@ -188,32 +223,16 @@ export default function Home() {
               </div>
             </div>
 
-            {/* İLETİŞİM FORMU */}
             <form onSubmit={sendToWhatsapp} className="flex flex-col gap-4">
-              <input 
-                type="text" placeholder="ADINIZ SOYADINIZ" required
-                className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white" 
-                value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
-              />
-              <input 
-                type="email" placeholder="E-POSTA ADRESİNİZ" 
-                className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white" 
-                value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
-              />
-              <textarea 
-                placeholder="PROJENİZDEN BAHSEDİN" rows={5} 
-                className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest resize-none text-white"
-                value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}
-              ></textarea>
-              <button type="submit" className="w-full bg-white text-black py-6 rounded-3xl font-black uppercase tracking-[0.4em] hover:bg-blue-600 hover:text-white transition-all shadow-2xl active:scale-95">
-                TEKLİF İSTE 🚀
-              </button>
+              <input type="text" placeholder="ADINIZ SOYADINIZ" required className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
+              <input type="email" placeholder="E-POSTA ADRESİNİZ" className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest text-white" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+              <textarea placeholder="PROJENİZDEN BAHSEDİN" rows={5} className="w-full bg-white/5 border border-white/10 p-6 rounded-3xl focus:border-blue-500 outline-none transition-all uppercase font-bold text-xs tracking-widest resize-none text-white" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
+              <button type="submit" className="w-full bg-white text-black py-6 rounded-3xl font-black uppercase tracking-[0.4em] hover:bg-blue-600 hover:text-white transition-all shadow-2xl active:scale-95">TEKLİF İSTE 🚀</button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="py-16 w-full border-t border-white/5 text-center">
         <p className="text-gray-600 text-[10px] font-black tracking-[0.5em] uppercase">© 2026 Metin Tasarım - Başakşehir İstanbul / Tüm Hakları Saklıdır.</p>
       </footer>
